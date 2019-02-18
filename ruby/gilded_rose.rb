@@ -49,19 +49,15 @@ class GildedRose
   end
 
   def check_reduction_value(item)
-    if is_conjured_item(item)
-      if item.sell_in < 0
-        4
-      else
-        2
-      end
+    if item.sell_in < 0
+      reduction = 2
     else
-      if item.sell_in < 0
-        2
-      else
-        1
-      end
+      reduction = 1
     end
+    if is_conjured_item(item)
+      reduction = reduction * 2
+    end
+    reduction
   end
 
   def is_conjured_item(item)
